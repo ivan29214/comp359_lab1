@@ -1,0 +1,78 @@
+public class MergeSort {
+// Merges two parts of the array back into one sorted section.
+// The first part of the array is from index start to middle.
+// The second part of the array is from index middle + 1' to end.
+
+static void mergeSubarrays(int[] array, int start, int middle, int end) {
+
+// Calculate sizes of two subarrays
+int leftSize = middle - start + 1;
+int rightSize = end - middle;
+
+// Create temporary arrays
+int[] leftArray = new int[leftSize];
+int[] rightArray = new int[rightSize];
+
+// Copy data to temporary arrays
+System.arraycopy(array, start, leftArray, 0, leftSize);
+System.arraycopy(array, middle + 1, rightArray, 0, rightSize);
+
+// Merge the temporary arrays back into the original array
+int i = 0, j = 0, k = start;
+while (i < leftSize && j < rightSize) {
+if (leftArray[i] <= rightArray[j]) {
+array[k++] = leftArray[i++];
+} else {
+array[k++] = rightArray[j++];
+}
+}
+
+// Copy remaining elements of leftArray[] if any
+while (i < leftSize) {
+array[k++] = leftArray[i++];
+}
+
+// Copy remaining elements of rightArray[] if any
+while (j < rightSize) {
+array[k++] = rightArray[j++];
+}
+}
+
+// Recursively sorts the array from index start to end.
+// It splits the array into two halves and merges them back using mergeSubarrays().
+static void mergeSort(int[] array, int start, int end) {
+if (start < end) {
+
+// Find the middle point
+int middle = start + (end - start) / 2;
+
+// Recursively sort first and second halves
+mergeSort(array, start, middle);
+mergeSort(array, middle + 1, end);
+
+// Merge the sorted halves
+mergeSubarrays(array, start, middle, end);
+}
+}
+
+// Helper function to print the elements of the array
+static void displayArray(int[] array) {
+for (int value : array) {
+System.out.print(value + " ");
+}
+System.out.println();
+}
+
+// Main method to test the merge sort algorithm
+// Initializes an array, prints it, sorts it, and then prints the sorted array
+public static void main(String[] args) {
+int[] array = { 1, 20, 13, 5, 25, 9};
+
+System.out.println("Original array:");
+displayArray(array);
+mergeSort(array, 0, array.length - 1);
+
+System.out.println("Sorted array:");
+displayArray(array);
+    }
+}
