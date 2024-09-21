@@ -44,7 +44,7 @@ public class RelaxedPartialOrderSorting {
         System.out.println("Sorted with relaxed partial order: " + numbers);
 
         // Calculating the total runtime of the algorithm in millisecond(ms)
-        long totalTime = (endTime - startTime) / 1000000;
-        System.out.println("Total runtime: " + totalTime + " ms");
+        long totalTime = (endTime - startTime);
+        System.out.println("Total runtime: " + totalTime + " ns");
     }
 }
