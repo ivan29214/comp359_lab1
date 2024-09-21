@@ -1,9 +1,7 @@
 # COMP-359 Assignment-1
 ## Project Contributors
 - Navraj Sohal
-  - Worked on partial sorting algorithms for:
-    -  Comparing integers by ignoring magnitude of signs.
-    -  Sorting integers emulating C++'s function std::partial_sort.
+  - Worked on partial sorting algorithms for sorting integers emulating C++'s function std::partial_sort.
   -  Worked and researched on their topic for the report.
   -  Helped in analysis and comparisons of the algorithms.
 - Birkaran Singh
