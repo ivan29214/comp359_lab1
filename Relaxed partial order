@@ -1,0 +1,50 @@
+import java.util.*;
+
+public class RelaxedPartialOrderSorting {
+    public static void main(String[] args) {
+        List<Double> numbers = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < 100; i++) {
+            // Generate a random double between 0 and 100 and add to the list
+            double ran_num = 100 * random.nextDouble();
+            numbers.add(ran_num);
+        }
+
+        // Printing the original random numbers
+        System.out.println("Original random numbers: " + numbers);
+
+        // storing the start time of the algorithm
+        long startTime = System.nanoTime();
+
+        // Sorting
+        Collections.sort(numbers, new Comparator<Double>() {
+            @Override
+            public int compare(Double num1, Double num2) {
+                // Typecast from double to int to remove the decimal part
+                int truncatedNum1 = (int) Math.floor(num1);  // cut the decimal part
+                int truncatedNum2 = (int) Math.floor(num2);
+
+                // First, compare the truncated integer values
+                int comparison = Integer.compare(truncatedNum1, truncatedNum2);
+
+                // If the truncated integer values are equal, comparing the original full values
+                if (comparison == 0) {
+                    comparison = Double.compare(num1, num2);
+                }
+
+                return comparison;
+            }
+        });
+
+        // storing the completion time
+        long endTime = System.nanoTime();
+
+        // Printing the sorted numbers
+        System.out.println("Sorted with relaxed partial order: " + numbers);
+
+        // Calculating the total runtime of the algorithm in millisecond(ms)
+        long totalTime = (endTime - startTime) / 1000000;
+        System.out.println("Total runtime: " + totalTime + " ms");
+    }
+}
